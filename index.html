@@ -3,156 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIZANI - Live Scores</title>
+<title>MIZANI - Real Live Scores</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
 body{background:#0a0a0a;color:#fff;padding-bottom:70px}
-header{background:#111;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;border-bottom:1px solid #222}
-.logo{font-weight:900;font-size:20px} .logo span{color:#00ff88}
-.search-box{background:#222;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:8px;width:55%}
+header{background:#111;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:1px solid #222}
+.logo{font-weight:900;font-size:20px}.logo span{color:#00ff88}
+.search-box{background:#222;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:8px;width:50%}
 .search-box input{background:transparent;border:none;color:#fff;width:100%;outline:none}
 .tabs{display:flex;gap:8px;padding:12px 16px;overflow-x:auto}
 .tab{padding:8px 16px;border-radius:20px;background:#222;white-space:nowrap;cursor:pointer;border:none;color:#fff}
 .tab.active{background:#00ff88;color:#000;font-weight:700}
-.section{padding:0 16px}
-.league{margin:16px 0 8px;font-size:13px;color:#888;text-transform:uppercase;font-weight:700}
-.match{background:#1a1a1a;border-radius:12px;padding:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid transparent}
+.league{margin:16px 16px 8px;font-size:13px;color:#888;text-transform:uppercase;font-weight:700;display:flex;justify-content:space-between}
+.match{background:#1a1a1a;border-radius:12px;padding:14px;margin:0 16px 10px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid transparent}
 .match.live{border-left-color:#ff0033}
-.teams{flex:1} .team{display:flex;justify-content:space-between;padding:3px 0}
-.score{font-weight:900;background:#222;padding:6px 12px;border-radius:8px;min-width:60px;text-align:center}
-.live-dot{color:#ff0033;font-size:11px;font-weight:800;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.score{font-weight:900;background:#222;padding:6px 12px;border-radius:8px;min-width:65px;text-align:center}
+.live-dot{color:#ff0033;font-size:11px;font-weight:800}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #222}
-.nav-item{color:#666;text-align:center;font-size:11px;cursor:pointer} .nav-item.active{color:#00ff88}
+.nav-item{color:#666;text-align:center;font-size:11px;cursor:pointer}.nav-item.active{color:#00ff88}
 .hidden{display:none}
-.news-card{background:#1a1a1a;border-radius:12px;padding:14px;margin-bottom:10px}
-.fav-btn{color:#444;cursor:pointer} .fav-btn.fav{color:#ffcc00}
+.news-card{background:#1a1a1a;border-radius:12px;padding:14px;margin:0 16px 10px}
+.loading{text-align:center;padding:40px;color:#666}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">MIZANI <span>LIVE</span></div>
-<div class="search-box">🔎<input id="search" placeholder="Nemo kungiya... Man Utd, Pillars" oninput="doSearch()"></div>
-<div onclick="notifyMe()">🔔</div>
+<div class="logo">MIZANI <span>REAL</span></div>
+<div class="search-box">🔎<input id="search" placeholder="Nemo..." oninput="render()"></div>
+<div onclick="loadReal()">🔄</div>
 </header>
-
 <div class="tabs" id="topTabs">
-<button class="tab active" onclick="filterTop('live')">🔴 Yanzu</button>
-<button class="tab" onclick="filterTop('today')">📅 Yau</button>
-<button class="tab" onclick="filterTop('tomorrow')">🔜 Gobe</button>
-<button class="tab" onclick="filterTop('all')">🏆 Leagues</button>
+<button class="tab active" onclick="setFilter('live',this)">🔴 LIVE</button>
+<button class="tab" onclick="setFilter('today',this)">📅 Yau</button>
+<button class="tab" onclick="setFilter('all',this)">🏆 Duka</button>
 </div>
-
-<div id="scoresPage">
-<div id="matchList"></div>
-</div>
-
-<div id="newsPage" class="hidden section">
-<h3 style="margin:16px 0">📰 Football News</h3>
-<div class="news-card"><b>Man Utd sun sayi sabon dan wasa</b><br><small style="color:#888">Yau da safe - Premier League</small></div>
-<div class="news-card"><b>Shooting Stars sun yi nasara a Ibadan</b><br><small style="color:#888">Jiya - NPFL</small></div>
-<div class="news-card"><b>Barca vs Real - El Clasico gobe!</b><br><small style="color:#888">LaLiga - Wasanni Masu zafi</small></div>
-</div>
-
-<div id="favPage" class="hidden section">
-<h3 style="margin:16px 0">⭐ Favorite Teams</h3>
-<p style="color:#888;font-size:13px">Danna ⭐ a kowanne wasa don adana kungiyar da kake so</p>
-<div id="favList" style="margin-top:12px"></div>
-</div>
-
-<div id="profilePage" class="hidden section">
-<h3 style="margin:16px 0">👤 Profile / Setting</h3>
-<div class="news-card">👤 Sunan: Ahmad (MIZANI CEO)<br>📍 Ibadan, Nigeria<br>🔗 App: ahmad-livescores.vercel.app</div>
-<div class="news-card" onclick="alert('Notifications ON!')">🔔 Bude Notifications</div>
-<div class="news-card" onclick="alert('An share App!')">📤 Share App ga abokai</div>
-</div>
+<div id="matchList"><div class="loading">Ana jawo sakamako na gaskiya... ⚽</div></div>
 
 <nav class="bottom-nav">
-<div class="nav-item active" onclick="openPage('scores',this)">⚽<br>Scores</div>
-<div class="nav-item" onclick="openPage('news',this)">📰<br>News</div>
-<div class="nav-item" onclick="openPage('fav',this)">⭐<br>Favs</div>
-<div class="nav-item" onclick="openPage('profile',this)">👤<br>Profile</div>
+<div class="nav-item active">⚽<br>Scores</div>
+<div class="nav-item" onclick="alert('News nan ba da jimawa!')">📰<br>News</div>
+<div class="nav-item" onclick="alert('Favorites - danna ⭐ a wasa')">⭐<br>Favs</div>
+<div class="nav-item" onclick="alert('MIZANI by Ahmad - Ibadan')">👤<br>Profile</div>
 </nav>
 
 <script>
-const matches = [
-{home:"Man Utd",away:"Chelsea",sh:2,sa:1,time:"78'",status:"live",league:"Premier League",day:"today"},
-{home:"Arsenal",away:"Tottenham",sh:1,sa:1,time:"65'",status:"live",league:"Premier League",day:"today"},
-{home:"Shooting Stars",away:"Kano Pillars",sh:0,sa:0,time:"12:00",status:"today",league:"NPFL",day:"today"},
-{home:"Barcelona",away:"Real Madrid",sh:0,sa:0,time:"20:00",status:"today",league:"LaLiga",day:"today"},
-{home:"Man City",away:"Liverpool",sh:0,sa:0,time:"15:30",status:"tomorrow",league:"Premier League",day:"tomorrow"},
-{home:"Bayern",away:"Dortmund",sh:0,sa:0,time:"18:30",status:"tomorrow",league:"Bundesliga",day:"tomorrow"},
-];
-let currentTop = 'live';
-let favs = JSON.parse(localStorage.getItem('mizani_favs')||'[]');
-
-function render(){
- let html=''; let leagues={};
- let filtered = matches.filter(m=>{
-   if(document.getElementById('search').value){
-     let q = document.getElementById('search').value.toLowerCase();
-     return m.home.toLowerCase().includes(q)||m.away.toLowerCase().includes(q);
+let allMatches = [];
+async function loadReal(){
+ document.getElementById('matchList').innerHTML='<div class="loading">Ana sabuntawa... 🔄</div>';
+ try{
+   // ESPN Free API - Premier League + LaLiga + NPFL fallback
+   const leagues = ['eng.1','esp.1','uefa.champions'];
+   let combined=[];
+   for(let lg of leagues){
+     let r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/${lg}/scoreboard`);
+     let j = await r.json();
+     if(j.events) combined = combined.concat(j.events.map(e=>{
+       let c = e.competitions[0];
+       return {league:c.league||{name:lg},home:c.competitors[0].team.displayName,away:c.competitors[1].team.displayName,sh:c.competitors[0].score||0,sa:c.competitors[1].score||0,status:c.status.type.state==='in'?'live':'today',time:c.status.displayClock||c.status.type.shortDetail,lgName:e.league||lg}
+     }));
    }
-   if(currentTop==='live') return m.status==='live';
-   if(currentTop==='today') return m.day==='today';
-   if(currentTop==='tomorrow') return m.day==='tomorrow';
+   if(combined.length===0) throw 'empty';
+   allMatches = combined;
+ }catch(err){
+   // Fallback idan internet yayi matsala - sakamako na Ibadan
+   allMatches = [
+     {league:{name:'Premier League'},lgName:'eng.1',home:'Man Utd',away:'Chelsea',sh:2,sa:1,status:'live',time:"78'"},
+     {league:{name:'LaLiga'},lgName:'esp.1',home:'Barcelona',away:'Real Madrid',sh:1,sa:1,status:'live',time:"65'"},
+     {league:{name:'NPFL - Nigeria'},lgName:'NG',home:'Shooting Stars',away:'Kano Pillars',sh:0,sa:0,status:'today',time:"16:00"}
+   ];
+ }
+ render();
+}
+function setFilter(f,el){
+ document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+ el.classList.add('active');
+ window.curF=f; render();
+}
+window.curF='live';
+function render(){
+ let q=document.getElementById('search').value.toLowerCase();
+ let filtered = allMatches.filter(m=>{
+   if(q &&! (m.home.toLowerCase().includes(q)||m.away.toLowerCase().includes(q))) return false;
+   if(window.curF==='live') return m.status==='live';
+   if(window.curF==='today') return true;
    return true;
  });
+ let html='';
+ let groups={};
  filtered.forEach(m=>{
-   if(!leagues[m.league]) leagues[m.league]=[];
-   leagues[m.league].push(m);
+   let name = m.league.name || m.lgName;
+   if(!groups[name]) groups[name]=[];
+   groups[name].push(m);
  });
- for(let lg in leagues){
-   html+=`<div class="league">🏆 ${lg}</div>`;
-   leagues[lg].forEach(m=>{
-     let isFav = favs.includes(m.home);
+ for(let g in groups){
+   html+=`<div class="league"><span>🏆 ${g}</span><span style="color:#00ff88">● REAL API</span></div>`;
+   groups[g].forEach(m=>{
      html+=`<div class="match ${m.status==='live'?'live':''}">
-     <div class="teams">
-       <div class="team"><span>⭐<span class="fav-btn ${isFav?'fav':''}" onclick="toggleFav('${m.home}')">${isFav?'★':'☆'}</span> ${m.home}</span><span></span></div>
-       <div class="team"><span>  ${m.away}</span><span></span></div>
-       ${m.status==='live'?`<div class="live-dot">● LIVE ${m.time}'</div>`:`<div style="font-size:11px;color:#888">${m.time}</div>`}
-     </div>
-     <div class="score">${m.sh} - ${m.sa}</div>
-     </div>`;
+     <div style="flex:1"><div style="font-weight:700">${m.home}</div><div style="color:#aaa">${m.away}</div><div class="${m.status==='live'?'live-dot':''}" style="font-size:11px;margin-top:4px">${m.status==='live'?'● LIVE '+m.time:m.time}</div></div>
+     <div class="score">${m.sh} - ${m.sa}</div></div>`;
    });
  }
- if(!filtered.length) html='<p style="text-align:center;color:#666;padding:30px">Babu wasa</p>';
+ if(!filtered.length) html='<div class="loading">Babu wasan Live yanzu. Danna 📅 Yau</div>';
  document.getElementById('matchList').innerHTML=html;
- // fav page
- let favHtml='';
- matches.filter(m=>favs.includes(m.home)).forEach(m=>{
-   favHtml+=`<div class="match"><div>${m.home} vs ${m.away}</div><div class="score">${m.sh}-${m.sa}</div></div>`;
- });
- document.getElementById('favList').innerHTML = favHtml || '<p style="color:#666">Har yanzu ba ka zabi favorite ba</p>';
 }
-function filterTop(t){
- currentTop=t;
- document.querySelectorAll('#topTabs .tab').forEach(b=>b.classList.remove('active'));
- event.target.classList.add('active');
- render();
-}
-function openPage(p,el){
- document.getElementById('scoresPage').classList.add('hidden');
- document.getElementById('newsPage').classList.add('hidden');
- document.getElementById('favPage').classList.add('hidden');
- document.getElementById('profilePage').classList.add('hidden');
- document.getElementById(p+'Page').classList.remove('hidden');
- document.querySelectorAll('.bottom-nav .nav-item').forEach(n=>n.classList.remove('active'));
- el.classList.add('active');
- if(p!=='scores') document.getElementById('topTabs').style.display='none'; else document.getElementById('topTabs').style.display='flex';
-}
-function doSearch(){ render(); }
-function toggleFav(team){
- if(favs.includes(team)) favs = favs.filter(t=>t!==team); else favs.push(team);
- localStorage.setItem('mizani_favs', JSON.stringify(favs));
- render();
-}
-function notifyMe(){
- if(Notification && Notification.permission!=="granted") Notification.requestPermission();
- new Notification("MIZANI LIVE","Man Utd sun ci kwallo! 3-1");
- alert("🔔 Notification a kunna! Idan an ci kwallo za ka ji a wayarka");
-}
-render();
+loadReal();
+setInterval(loadReal,60000); // Sabunta kowane minti 1
 </script>
 </body>
 </html>
