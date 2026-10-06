@@ -62,10 +62,21 @@ const urlParams = new URLSearchParams(window.location.search);
 window.refCode = urlParams.get('ref');
 window.myReferralLink = window.location.origin + window.location.pathname + "?ref=" + window.myUserId;
 console.log("🔗 Your Link:", window.myReferralLink);
-</script>
-<script>
 let allMatches=[],currentFilter='live';
-const clubs=[
+
+// --- LIVE MATCHES DAGA FIREBASE ---
+async function loadMatches(){
+ try{
+  const fb = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+  const q = fb.query(fb.collection(window.seniorDB,"matches"), fb.orderBy("time","asc"));
+  const snap = await fb.getDocs(q);
+  allMatches=[];
+  snap.forEach(d=>{ allMatches.push(d.data()); });
+  console.log("✅ Loaded:", allMatches.length);
+  if(typeof render === 'function') render();
+ }catch(e){ console.log("Babu matches tukuna"); }
+}
+loadMatches();
 {name:'Real Madrid',logo:'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg',coach:'Carlo Ancelotti',trophies:'14x Champions League, 36x La Liga, 20x Copa del Rey, 5x Club World Cup',players:[{n:1,name:'Courtois',num:1,x:50,y:90},{n:2,name:'Carvajal',num:2,x:80,y:70},{n:3,name:'Rudiger',num:22,x:65,y:75},{n:4,name:'Alaba',num:4,x:35,y:75},{n:5,name:'Mendy',num:23,x:20,y:70},{n:6,name:'Valverde',num:15,x:70,y:50},{n:7,name:'Tchouameni',num:18,x:50,y:55},{n:8,name:'Bellingham',num:5,x:30,y:50},{n:9,name:'Rodrygo',num:11,x:75,y:25},{n:10,name:'Vinicius',num:7,x:25,y:25},{n:11,name:'Mbappe',num:9,x:50,y:15}]},
 {name:'Barcelona',logo:'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg',coach:'Hansi Flick',trophies:'5x Champions League, 27x La Liga, 31x Copa del Rey',players:[{n:1,name:'Ter Stegen',num:1,x:50,y:90},{n:2,name:'Kounde',num:23,x:80,y:70},{n:3,name:'Araujo',num:4,x:60,y:75},{n:4,name:'Cubarsi',num:5,x:40,y:75},{n:5,name:'Balde',num:3,x:20,y:70},{n:6,name:'Pedri',num:8,x:70,y:50},{n:7,name:'De Jong',num:21,x:50,y:55},{n:8,name:'Gavi',num:6,x:30,y:50},{n:9,name:'Yamal',num:19,x:75,y:25},{n:10,name:'Lewandowski',num:9,x:50,y:15},{n:11,name:'Raphinha',num:11,x:25,y:25}]},
 {name:'Man City',logo:'https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg',coach:'Pep Guardiola',trophies:'1x Champions League, 10x Premier League',players:[{n:1,name:'Ederson',num:31,x:50,y:90},{n:2,name:'Walker',num:2,x:80,y:70},{n:3,name:'Dias',num:3,x:60,y:75},{n:4,name:'Stones',num:5,x:40,y:75},{n:5,name:'Gvardiol',num:24,x:20,y:70},{n:6,name:'Rodri',num:16,x:50,y:55},{n:7,name:'Bernardo',num:20,x:70,y:50},{n:8,name:'Foden',num:47,x:30,y:50},{n:9,name:'Doku',num:11,x:75,y:25},{n:10,name:'Haaland',num:9,x:50,y:15},{n:11,name:'Grealish',num:10,x:25,y:25}]},
