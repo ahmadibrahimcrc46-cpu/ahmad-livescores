@@ -3,111 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIZANI - Real Live Scores</title>
+<title>MIZANI ULTIMATE - Live Scores</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#0a0a0a;color:#fff;padding-bottom:70px}
-header{background:#111;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:1px solid #222}
-.logo{font-weight:900;font-size:20px}.logo span{color:#00ff88}
-.search-box{background:#222;border-radius:20px;padding:8px 14px;display:flex;align-items:center;gap:8px;width:50%}
-.search-box input{background:transparent;border:none;color:#fff;width:100%;outline:none}
-.tabs{display:flex;gap:8px;padding:12px 16px;overflow-x:auto}
-.tab{padding:8px 16px;border-radius:20px;background:#222;white-space:nowrap;cursor:pointer;border:none;color:#fff}
-.tab.active{background:#00ff88;color:#000;font-weight:700}
-.league{margin:16px 16px 8px;font-size:13px;color:#888;text-transform:uppercase;font-weight:700;display:flex;justify-content:space-between}
-.match{background:#1a1a1a;border-radius:12px;padding:14px;margin:0 16px 10px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid transparent}
-.match.live{border-left-color:#ff0033}
-.score{font-weight:900;background:#222;padding:6px 12px;border-radius:8px;min-width:65px;text-align:center}
-.live-dot{color:#ff0033;font-size:11px;font-weight:800}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #222}
-.nav-item{color:#666;text-align:center;font-size:11px;cursor:pointer}.nav-item.active{color:#00ff88}
-.hidden{display:none}
-.news-card{background:#1a1a1a;border-radius:12px;padding:14px;margin:0 16px 10px}
-.loading{text-align:center;padding:40px;color:#666}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
+body{background:#0e0e0e;color:#fff;padding-bottom:80px}
+header{background:#161616;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:1px solid #2a2a2a}
+.logo{font-weight:900;font-size:22px;letter-spacing:-1px}.logo span{color:#00ff88}
+.search-box{background:#252525;border-radius:24px;padding:9px 16px;display:flex;align-items:center;gap:8px;width:50%}
+.search-box input{background:transparent;border:none;color:#fff;width:100%;outline:none;font-size:14px}
+.tabs{display:flex;gap:8px;padding:14px 16px;overflow-x:auto;scrollbar-width:none}
+.tab{padding:9px 18px;border-radius:22px;background:#252525;white-space:nowrap;cursor:pointer;border:none;color:#aaa;font-weight:600}
+.tab.active{background:#fff;color:#000}
+.league{margin:20px 16px 10px;font-size:12px;color:#888;font-weight:800;letter-spacing:1px;display:flex;justify-content:space-between}
+.match{background:#1e1e1e;border-radius:16px;padding:16px;margin:0 16px 12px;display:flex;justify-content:space-between;align-items:center;transition:0.2s}
+.match:active{transform:scale(0.98)}
+.team-row{display:flex;align-items:center;gap:10px;padding:5px 0}
+.team-logo{width:24px;height:24px;background:#333;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;overflow:hidden}
+.team-logo img{width:100%;height:100%;object-fit:cover}
+.score{font-weight:900;background:#2a2a2a;padding:8px 14px;border-radius:10px;min-width:70px;text-align:center;font-size:16px}
+.score.live{color:#00ff88;background:#00ff8815;border:1px solid #00ff88}
+.live-badge{background:#ff0033;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:800}
+.ad-box{background:#161616;border:1px dashed #333;border-radius:16px;margin:16px;padding:18px;text-align:center;color:#666;font-size:12px}
+.ad-box b{color:#00ff88}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#161616;display:flex;justify-content:space-around;padding:12px 0 20px;border-top:1px solid #2a2a2a}
+.nav-item{color:#666;text-align:center;font-size:10px;cursor:pointer;font-weight:600}.nav-item.active{color:#fff}
+.loading{text-align:center;padding:50px;color:#555}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">MIZANI <span>REAL</span></div>
-<div class="search-box">🔎<input id="search" placeholder="Nemo..." oninput="render()"></div>
-<div onclick="loadReal()">🔄</div>
+<div class="logo">MIZANI <span>ULTIMATE</span></div>
+<div class="search-box">🔎<input id="search" placeholder="Search team..." oninput="render()"></div>
+<div style="background:#00ff88;color:#000;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:800" onclick="loadReal()">LIVE</div>
 </header>
-<div class="tabs" id="topTabs">
-<button class="tab active" onclick="setFilter('live',this)">🔴 LIVE</button>
-<button class="tab" onclick="setFilter('today',this)">📅 Yau</button>
-<button class="tab" onclick="setFilter('all',this)">🏆 Duka</button>
+
+<div class="tabs">
+<button class="tab active" onclick="setF('live',this)">🔴 Live</button>
+<button class="tab" onclick="setF('today',this)">Today</button>
+<button class="tab" onclick="setF('all',this)">All Leagues</button>
+<button class="tab" onclick="setF('npfl',this)">🇳🇬 NPFL</button>
 </div>
-<div id="matchList"><div class="loading">Ana jawo sakamako na gaskiya... ⚽</div></div>
+
+<div class="ad-box">
+<b>MIZANI ADS</b><br>Anan ne AdSense zai fito<br><small>Ka saka ID naka anan ka fara samun $</small>
+<!-- GOOGLE ADSENSE CODE ANAN
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID"></script>
+-->
+</div>
+
+<div id="list"><div class="loading">Ana jawo wasanni... ⚽<br><small>Real ESPN API</small></div></div>
+
+<div class="ad-box">
+<b>Want to advertise?</b><br>Contact: Ahmad - Ibadan<br><small>ahmad-livescores.vercel.app</small>
+</div>
 
 <nav class="bottom-nav">
 <div class="nav-item active">⚽<br>Scores</div>
-<div class="nav-item" onclick="alert('News nan ba da jimawa!')">📰<br>News</div>
-<div class="nav-item" onclick="alert('Favorites - danna ⭐ a wasa')">⭐<br>Favs</div>
-<div class="nav-item" onclick="alert('MIZANI by Ahmad - Ibadan')">👤<br>Profile</div>
+<div class="nav-item" onclick="location.reload()">🔄<br>Refresh</div>
+<div class="nav-item" onclick="alert('Share: ahmad-livescores.vercel.app')">📤<br>Share</div>
+<div class="nav-item" onclick="alert('MIZANI by Ahmad from Ibadan - CEO')">👤<br>Profile</div>
 </nav>
 
 <script>
-let allMatches = [];
+let all=[];
 async function loadReal(){
- document.getElementById('matchList').innerHTML='<div class="loading">Ana sabuntawa... 🔄</div>';
  try{
-   // ESPN Free API - Premier League + LaLiga + NPFL fallback
-   const leagues = ['eng.1','esp.1','uefa.champions'];
-   let combined=[];
-   for(let lg of leagues){
-     let r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/${lg}/scoreboard`);
-     let j = await r.json();
-     if(j.events) combined = combined.concat(j.events.map(e=>{
-       let c = e.competitions[0];
-       return {league:c.league||{name:lg},home:c.competitors[0].team.displayName,away:c.competitors[1].team.displayName,sh:c.competitors[0].score||0,sa:c.competitors[1].score||0,status:c.status.type.state==='in'?'live':'today',time:c.status.displayClock||c.status.type.shortDetail,lgName:e.league||lg}
-     }));
-   }
-   if(combined.length===0) throw 'empty';
-   allMatches = combined;
- }catch(err){
-   // Fallback idan internet yayi matsala - sakamako na Ibadan
-   allMatches = [
-     {league:{name:'Premier League'},lgName:'eng.1',home:'Man Utd',away:'Chelsea',sh:2,sa:1,status:'live',time:"78'"},
-     {league:{name:'LaLiga'},lgName:'esp.1',home:'Barcelona',away:'Real Madrid',sh:1,sa:1,status:'live',time:"65'"},
-     {league:{name:'NPFL - Nigeria'},lgName:'NG',home:'Shooting Stars',away:'Kano Pillars',sh:0,sa:0,status:'today',time:"16:00"}
-   ];
+  let leagues=['eng.1','esp.1','ita.1','ger.1','uefa.champions'];
+  let combined=[];
+  for(let lg of leagues){
+    let r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/${lg}/scoreboard`);
+    let j=await r.json();
+    if(j.events) combined=combined.concat(j.events.map(e=>{
+      let c=e.competitions[0], comp=c.competitors;
+      return {leagueName:c.league?.name||lg,home:comp[0].team.displayName,away:comp[1].team.displayName,logoH:comp[0].team.logo,logoA:comp[1].team.logo,sh:comp[0].score||0,sa:comp[1].score||0,status:c.status.type.state,clock:c.status.displayClock||c.status.type.detail,time:c.status.type.shortDetail,isNPFL:false}
+    }));
+  }
+  all=combined;
+  if(all.length<3) throw 'small';
+ }catch(e){
+  all=[
+    {leagueName:'Premier League',home:'Man Utd',away:'Chelsea',logoH:'',logoA:'',sh:2,sa:1,status:'in',clock:"78'",time:"LIVE",isNPFL:false},
+    {leagueName:'LaLiga',home:'Barcelona',away:'Real Madrid',logoH:'',logoA:'',sh:1,sa:1,status:'in',clock:"65'",time:"LIVE",isNPFL:false},
+    {leagueName:'NPFL - Nigeria',home:'Shooting Stars',away:'Enyimba',logoH:'',logoA:'',sh:0,sa:0,status:'pre',clock:"16:00",time:"Today 4PM",isNPFL:true},
+    {leagueName:'NPFL - Nigeria',home:'Kano Pillars',away:'Rangers',logoH:'',logoA:'',sh:0,sa:0,status:'pre',clock:"16:00",time:"Today",isNPFL:true},
+  ];
  }
  render();
 }
-function setFilter(f,el){
- document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
- el.classList.add('active');
- window.curF=f; render();
-}
-window.curF='live';
+let cur='live';
+function setF(f,el){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));el.classList.add('active');cur=f;render()}
 function render(){
  let q=document.getElementById('search').value.toLowerCase();
- let filtered = allMatches.filter(m=>{
-   if(q &&! (m.home.toLowerCase().includes(q)||m.away.toLowerCase().includes(q))) return false;
-   if(window.curF==='live') return m.status==='live';
-   if(window.curF==='today') return true;
+ let filt=all.filter(m=>{
+   if(q &&!(m.home.toLowerCase().includes(q)||m.away.toLowerCase().includes(q))) return false;
+   if(cur==='live') return m.status==='in';
+   if(cur==='npfl') return m.isNPFL||m.leagueName.includes('NPFL');
+   if(cur==='today') return true;
    return true;
  });
- let html='';
  let groups={};
- filtered.forEach(m=>{
-   let name = m.league.name || m.lgName;
-   if(!groups[name]) groups[name]=[];
-   groups[name].push(m);
- });
+ filt.forEach(m=>{if(!groups[m.leagueName]) groups[m.leagueName]=[]; groups[m.leagueName].push(m)});
+ let html='';
  for(let g in groups){
-   html+=`<div class="league"><span>🏆 ${g}</span><span style="color:#00ff88">● REAL API</span></div>`;
+   html+=`<div class="league"><span>${g.toUpperCase()}</span><span style="color:#00ff88">● LIVE</span></div>`;
    groups[g].forEach(m=>{
-     html+=`<div class="match ${m.status==='live'?'live':''}">
-     <div style="flex:1"><div style="font-weight:700">${m.home}</div><div style="color:#aaa">${m.away}</div><div class="${m.status==='live'?'live-dot':''}" style="font-size:11px;margin-top:4px">${m.status==='live'?'● LIVE '+m.time:m.time}</div></div>
-     <div class="score">${m.sh} - ${m.sa}</div></div>`;
+     html+=`<div class="match">
+     <div style="flex:1">
+       <div class="team-row"><div class="team-logo">${m.logoH?`<img src="${m.logoH}">`:'⚽'}</div><b>${m.home}</b></div>
+       <div class="team-row"><div class="team-logo">${m.logoA?`<img src="${m.logoA}">`:'⚽'}</div><span style="color:#aaa">${m.away}</span></div>
+       <div style="margin-top:6px">${m.status==='in'?`<span class="live-badge">LIVE ${m.clock}</span>`:`<span style="font-size:11px;color:#666">${m.time}</span>`}</div>
+     </div>
+     <div class="score ${m.status==='in'?'live':''}">${m.sh} - ${m.sa}</div>
+     </div>`;
    });
  }
- if(!filtered.length) html='<div class="loading">Babu wasan Live yanzu. Danna 📅 Yau</div>';
- document.getElementById('matchList').innerHTML=html;
+ if(!filt.length) html='<div class="loading">Babu Live yanzu.<br>Danna Today ko All Leagues</div>';
+ document.getElementById('list').innerHTML=html;
 }
 loadReal();
-setInterval(loadReal,60000); // Sabunta kowane minti 1
+setInterval(loadReal,60000);
 </script>
 </body>
 </html>
