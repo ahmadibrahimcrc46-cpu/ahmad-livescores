@@ -41,6 +41,21 @@ header{background:rgba(0,0,0,.95);padding:14px 16px;display:flex;justify-content
 <div class="nav-item" onclick="showPage('profile',this)"><div class="ico">👤</div>Profile</div>
 </div>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyC6G8t3zlJfNspUoXuKQ3JmdiYR-9GrQ-0",
+  authDomain: "senior-ultimate.firebaseapp.com",
+  projectId: "senior-ultimate",
+  storageBucket: "senior-ultimate.firebasestorage.app",
+  messagingSenderId: "651798042334",
+  appId: "1:651798042334:web:6c68c5d023c583ffbcd44f"
+};
+const app = initializeApp(firebaseConfig);
+window.seniorDB = getFirestore(app);
+console.log("SENIOR ULTIMATE LIVE!");
+</script>
 <script>
 let allMatches=[],currentFilter='live';
 const clubs=[
