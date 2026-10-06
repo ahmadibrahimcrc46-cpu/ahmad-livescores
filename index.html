@@ -1,120 +1,67 @@
-<!DOCTYPE html>
-<html lang="ha">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENIOR ULTIMATE</title>
-<link rel="manifest" href="manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#000000">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
-body{background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=800');background-size:cover;background-attachment:fixed;color:#fff;min-height:100vh;padding-bottom:95px}
-header{background:rgba(0,0,0,.92);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:2px solid #ffcc00}
-.logo{display:flex;gap:10px;align-items:center;font-weight:900}
-.ball{width:32px;height:32px;background:url('https://upload.wikimedia.org/wikipedia/commons/7/7d/Adidas_Telstar_18_%28cropped%29.png');background-size:cover;border-radius:50%;border:2px solid #ffcc00}
-.tabs{display:flex;gap:8px;padding:12px 16px;overflow-x:auto}
-.tab{padding:10px 20px;border-radius:25px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:800;cursor:pointer;white-space:nowrap}
-.tab.active{background:#ffcc00;color:#000;transform:scale(1.05)}
-.match{background:rgba(0,0,0,.82);border-radius:16px;padding:14px;margin:0 14px 10px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid #ffcc00}
-.score{font-weight:900;background:rgba(255,255,255,.12);padding:8px 14px;border-radius:12px;text-align:center;min-width:70px}
-.score.live{color:#ffcc00;border:1px solid #ffcc00;animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.97);border-top:1px solid #222;display:flex;justify-content:space-around;padding:12px 0 24px;z-index:100}
-.nav-item{display:flex;flex-direction:column;align-items:center;color:#666;font-size:11px;font-weight:800;cursor:pointer}
-.nav-item.active{color:#ffcc00}
-.nav-item.ico{font-size:24px}
-.page{display:none}.page.active{display:block}
-.profile-card{background:rgba(0,0,0,.8);margin:14px;border-radius:20px;padding:20px;text-align:center;border:1px solid rgba(255,204,0,.3)}
-</style>
-</head>
-<body>
-<header><div class="logo"><div class="ball"></div>SENIOR <span style="color:#ffcc00">ULTIMATE</span></div><div style="background:#ffcc00;color:#000;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:900">LIVE ⚽</div></header>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENIOR ULTIMATE V7</title><link rel="manifest" href="manifest.json"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#000">
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}body{background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=800');background-size:cover;background-attachment:fixed;color:#fff;min-height:100vh;padding-bottom:100px}
+header{background:rgba(0,0,0,.95);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:2px solid #ffcc00}.logo{display:flex;gap:10px;align-items:center;font-weight:900}.ball{width:32px;height:32px;background:url('https://upload.wikimedia.org/wikipedia/commons/7/7d/Adidas_Telstar_18_%28cropped%29.png');background-size:cover;border-radius:50%;border:2px solid #ffcc00}
+.tabs{display:flex;gap:8px;padding:12px 16px;overflow-x:auto}.tab{padding:10px 18px;border-radius:25px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:800;cursor:pointer;white-space:nowrap}.tab.active{background:#ffcc00;color:#000}
+.match{background:rgba(0,0,0,.85);border-radius:16px;padding:14px;margin:0 14px 10px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid #ffcc00}.score{font-weight:900;background:rgba(255,255,255,.12);padding:8px 14px;border-radius:12px;text-align:center;min-width:70px}.score.live{color:#ffcc00;border:1px solid #ffcc00;animation:pulse 1s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.98);border-top:1px solid #222;display:flex;justify-content:space-around;padding:12px 0 26px;z-index:100}.nav-item{display:flex;flex-direction:column;align-items:center;color:#666;font-size:11px;font-weight:800;cursor:pointer}.nav-item.active{color:#ffcc00}.ico{font-size:22px}.page{display:none}.page.active{display:block}
+.club-card{background:rgba(0,0,0,.8);margin:0 14px 10px;border-radius:16px;padding:14px;display:flex;gap:14px;align-items:center;border:1px solid #333;cursor:pointer}.club-card img{width:50px;height:50px;border-radius:50%;object-fit:cover;background:#fff}
+.formation{position:relative;background:linear-gradient(#2d7d2d,#1a5a1a);height:420px;border-radius:16px;margin:14px;border:2px solid #fff;overflow:hidden}.player-dot{position:absolute;width:56px;text-align:center;transform:translate(-50%,-50%)}.player-dot.num{background:#ffcc00;color:#000;width:28px;height:28px;border-radius:50%;margin:0 auto;font-weight:900;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #fff}.player-dot.name{font-size:10px;font-weight:800;margin-top:2px;text-shadow:0 1px 2px #000}
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);z-index:200;overflow-y:auto;padding-bottom:100px;display:none}.modal.show{display:block}
+</style></head><body>
+<header><div class="logo"><div class="ball"></div>SENIOR <span style="color:#ffcc00">ULTIMATE</span></div><div style="background:#ffcc00;color:#000;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:900">LIVE ⚽ V7</div></header>
 
 <div id="homePage" class="page active">
-<div class="tabs">
-<button class="tab active" onclick="setFilter('live',this)">🔴 Live</button>
-<button class="tab" onclick="setFilter('today',this)">Today</button>
-<button class="tab" onclick="setFilter('all',this)">All</button>
-<button class="tab" onclick="setFilter('npfl',this)">🇳🇬 NPFL</button>
-</div>
-<div id="list"></div>
-</div>
+<div class="tabs"><button class="tab active" onclick="setFilter('live',this)">🔴 Live</button><button class="tab" onclick="setFilter('today',this)">Today</button><button class="tab" onclick="setFilter('all',this)">All</button><button class="tab" onclick="setFilter('npfl',this)">🇳🇬 NPFL</button><button class="tab" onclick="setFilter('ucl',this)">🏆 UCL</button></div>
+<div id="list"></div></div>
 
+<div id="clubsPage" class="page"><h3 style="margin:14px;color:#ffcc00">🏟️ TOP CLUBS</h3><div id="clubsList"></div></div>
 <div id="historyPage" class="page"><h3 style="margin:14px;color:#ffcc00">📜 HISTORY</h3><div id="historyList"></div></div>
-
 <div id="profilePage" class="page">
-<div class="profile-card">
-<div class="ball" style="width:80px;height:80px;margin:0 auto 12px"></div>
-<h2>CEO AHMAD</h2>
-<p style="color:#ffcc00;font-weight:900">SENIOR ULTIMATE V6 👑</p>
-
+<div style="background:rgba(0,0,0,.8);margin:14px;border-radius:20px;padding:20px;text-align:center;border:1px solid #ffcc0033">
+<div class="ball" style="width:80px;height:80px;margin:0 auto 12px"></div><h2>CEO AHMAD</h2><p style="color:#ffcc00;font-weight:900">SENIOR ULTIMATE V7 👑</p>
 <div style="margin-top:18px;background:linear-gradient(135deg,#ffcc00,#ff9900);color:#000;padding:16px;border-radius:16px;text-align:left">
-<h3 style="font-size:15px">🎁 REFERRAL - SAMU 20%!</h3>
-<p style="font-size:12px;margin:6px 0">Tura mutum 10 suyi register!</p>
-<div style="background:#000;color:#ffcc00;padding:12px;border-radius:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center">
-<span id="refCode" style="font-weight:900">SENIOR-...</span>
-<button onclick="copyRef()" style="background:#ffcc00;border:none;padding:6px 12px;border-radius:20px;font-weight:900;font-size:12px">COPY</button>
+<h3>🎁 REFERRAL REWARD</h3><p style="font-size:12px;margin:6px 0">Invite 10 friends = 750 Points (N200 Real) + 15 friends = 1GB Data!</p>
+<div style="background:#000;color:#ffcc00;padding:12px;border-radius:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center"><span id="refCode" style="font-weight:900">SENIOR-...</span><button onclick="copyRef()" style="background:#ffcc00;border:none;padding:6px 12px;border-radius:20px;font-weight:900;font-size:12px">COPY</button></div>
+<div style="display:flex;gap:10px;margin:10px 0"><div style="flex:1;background:rgba(0,0,0,.3);padding:10px;border-radius:12px;text-align:center"><div id="refCount" style="font-size:22px;font-weight:900">0</div><div style="font-size:11px">Invited</div></div><div style="flex:1;background:rgba(0,0,0,.3);padding:10px;border-radius:12px;text-align:center"><div id="refNeeded" style="font-size:22px;font-weight:900">10</div><div style="font-size:11px">Left for 750</div></div></div>
+<div style="background:#000;height:8px;border-radius:10px;overflow:hidden"><div id="refProgress" style="height:100%;background:#fff;width:0%;transition:.5s"></div></div><p id="refStatus" style="font-size:12px;margin-top:8px;font-weight:700">Share your link!</p>
+<button onclick="shareRef()" style="margin-top:14px;width:100%;background:#000;color:#ffcc00;border:none;padding:14px;border-radius:14px;font-weight:900">SHARE LINK NOW 📤</button>
+<p id="rewardBox" style="display:none;margin-top:12px;background:#000;color:#00ff88;padding:12px;border-radius:12px;font-weight:900">🎉 Congrats! You reached 10! Contact: 080... for N200! 15 for Data!</p>
 </div>
-<div style="display:flex;gap:10px;margin:10px 0">
-<div style="flex:1;background:rgba(0,0,0,.3);padding:10px;border-radius:12px;text-align:center"><div id="refCount" style="font-size:22px;font-weight:900">0</div><div style="font-size:11px">Mutum</div></div>
-<div style="flex:1;background:rgba(0,0,0,.3);padding:10px;border-radius:12px;text-align:center"><div id="refNeeded" style="font-size:22px;font-weight:900">10</div><div style="font-size:11px">Saura</div></div>
-</div>
-<div style="background:#000;height:8px;border-radius:10px;overflow:hidden"><div id="refProgress" style="height:100%;background:#fff;width:0%;transition:.5s"></div></div>
-<p id="refStatus" style="font-size:12px;margin-top:8px;font-weight:700">Tura link din ka!</p>
-<button onclick="shareRef()" style="margin-top:14px;width:100%;background:#000;color:#ffcc00;border:none;padding:14px;border-radius:14px;font-weight:900">TURA LINK YANZU 📤</button>
-<p id="rewardBox" style="display:none;margin-top:12px;background:#000;color:#00ff88;padding:12px;border-radius:12px;font-weight:900">🎉 MUBARAK! Ka cika 10! Kira: 080... ka karbi 20%!</p>
-</div>
-</div>
-</div>
+<div style="margin-top:14px;background:rgba(255,255,255,.07);padding:12px;border-radius:12px;font-size:12px">📊 Total App Downloads: <b id="totalDownloads">1,247</b><br>👥 Your Referrals: <b id="totalRef">0</b></div>
+</div></div>
+
+<div id="clubModal" class="modal"><div style="padding:14px;display:flex;justify-content:space-between;align-items:center;background:#000;position:sticky;top:0"><h2 id="clubName" style="color:#ffcc00"></h2><button onclick="closeClub()" style="background:#ffcc00;border:none;padding:8px 14px;border-radius:20px;font-weight:900">✕</button></div>
+<div style="padding:14px"><p id="clubInfo" style="font-size:13px;color:#ccc;line-height:1.5"></p><h3 style="margin:16px 0 8px;color:#ffcc00">🏆 TROPHIES</h3><div id="clubCups" style="font-size:12px"></div><h3 style="margin:16px 0 8px;color:#ffcc00">👨‍🏫 COACH</h3><p id="clubCoach" style="font-weight:900"></p><h3 style="margin:16px 0 8px;color:#ffcc00">⚽ FORMATION 4-3-3</h3><div class="formation" id="formation"></div><h3 style="margin:16px 0 8px;color:#ffcc00">⭐ TOP 30 WORLD LEGENDS</h3><div id="legendsList" style="font-size:12px"></div></div></div>
 
 <div class="bottom-nav">
 <div class="nav-item active" onclick="showPage('home',this)"><div class="ico">🏠</div>Home</div>
+<div class="nav-item" onclick="showPage('clubs',this)"><div class="ico">🏟️</div>Clubs</div>
 <div class="nav-item" onclick="showPage('history',this)"><div class="ico">📜</div>History</div>
 <div class="nav-item" onclick="showPage('profile',this)"><div class="ico">👤</div>Profile</div>
 </div>
 
 <script>
-let allMatches=[];let currentFilter='live';
-function showPage(name,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById(name+'Page').classList.add('active');el.classList.add('active');}
+let allMatches=[],currentFilter='live';
+const clubs=[
+{name:'Real Madrid',logo:'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg',coach:'Carlo Ancelotti',trophies:'14x Champions League, 36x La Liga, 20x Copa del Rey, 5x Club World Cup',players:[{n:1,name:'Courtois',num:1,x:50,y:90},{n:2,name:'Carvajal',num:2,x:80,y:70},{n:3,name:'Rudiger',num:22,x:65,y:75},{n:4,name:'Alaba',num:4,x:35,y:75},{n:5,name:'Mendy',num:23,x:20,y:70},{n:6,name:'Valverde',num:15,x:70,y:50},{n:7,name:'Tchouameni',num:18,x:50,y:55},{n:8,name:'Bellingham',num:5,x:30,y:50},{n:9,name:'Rodrygo',num:11,x:75,y:25},{n:10,name:'Vinicius',num:7,x:25,y:25},{n:11,name:'Mbappe',num:9,x:50,y:15}]},
+{name:'Barcelona',logo:'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg',coach:'Hansi Flick',trophies:'5x Champions League, 27x La Liga, 31x Copa del Rey',players:[{n:1,name:'Ter Stegen',num:1,x:50,y:90},{n:2,name:'Kounde',num:23,x:80,y:70},{n:3,name:'Araujo',num:4,x:60,y:75},{n:4,name:'Cubarsi',num:5,x:40,y:75},{n:5,name:'Balde',num:3,x:20,y:70},{n:6,name:'Pedri',num:8,x:70,y:50},{n:7,name:'De Jong',num:21,x:50,y:55},{n:8,name:'Gavi',num:6,x:30,y:50},{n:9,name:'Yamal',num:19,x:75,y:25},{n:10,name:'Lewandowski',num:9,x:50,y:15},{n:11,name:'Raphinha',num:11,x:25,y:25}]},
+{name:'Man City',logo:'https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg',coach:'Pep Guardiola',trophies:'1x Champions League, 10x Premier League',players:[{n:1,name:'Ederson',num:31,x:50,y:90},{n:2,name:'Walker',num:2,x:80,y:70},{n:3,name:'Dias',num:3,x:60,y:75},{n:4,name:'Stones',num:5,x:40,y:75},{n:5,name:'Gvardiol',num:24,x:20,y:70},{n:6,name:'Rodri',num:16,x:50,y:55},{n:7,name:'Bernardo',num:20,x:70,y:50},{n:8,name:'Foden',num:47,x:30,y:50},{n:9,name:'Doku',num:11,x:75,y:25},{n:10,name:'Haaland',num:9,x:50,y:15},{n:11,name:'Grealish',num:10,x:25,y:25}]},
+{name:'Arsenal',logo:'https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg',coach:'Mikel Arteta',trophies:'13x Premier League, 14x FA Cup',players:[]},
+{name:'Chelsea',logo:'https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg',coach:'Enzo Maresca',trophies:'2x Champions League, 6x Premier League',players:[]}
+];
+const legends=['Messi','Ronaldo','Pele','Maradona','Cruyff','Beckenbauer','Zidane','Ronaldo Nazario','Maldini','Iniesta','Xavi','Neymar','Mbappe','Haaland','Lewandowski','Benzema','Modric','Kante','Salah','De Bruyne','Ronaldinho','Eusebio','Di Stefano','Puskas','Best','Garrincha','Yashin','Platini','Van Basten','Henry'];
+function showPage(name,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById(name+'Page').classList.add('active');el.classList.add('active');if(name==='clubs')renderClubs();}
 function setFilter(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');currentFilter=f;render();}
-function render(){
-let filtered=allMatches.filter(m=>{
-if(currentFilter==='live')return m.state==='in';
-if(currentFilter==='today')return m.state==='pre';
-if(currentFilter==='all')return true;
-if(currentFilter==='npfl')return m.isNPFL;
-return true;
-});
-let grouped={};filtered.forEach(m=>{if(!grouped[m.league])grouped[m.league]=[];grouped[m.league].push(m)});
-let html='';if(!filtered.length)html='<div style="text-align:center;padding:50px;color:#888">Babu wasa<br><br><button onclick="setFilter(\'all\',document.querySelectorAll(\'.tab\')[2])" style="background:#ffcc00;border:none;padding:10px 20px;border-radius:20px;font-weight:800">Duba All</button></div>';
-for(let lg in grouped){html+=`<div style="margin:18px 16px 8px;font-size:11px;color:#ffcc00;font-weight:900">${lg.toUpperCase()}</div>`;grouped[lg].forEach(m=>{html+=`<div class="match"><div><div style="display:flex;gap:8px;margin-bottom:4px">⚽ <b>${m.home}</b></div><div style="display:flex;gap:8px;color:#bbb">⚽ ${m.away}</div></div><div class="score ${m.state==='in'?'live':''}">${m.homeScore}-${m.awayScore}<div style="font-size:10px">${m.time}</div></div></div>`});}
-document.getElementById('list').innerHTML=html;
-let hist=allMatches.filter(m=>m.state==='post');let hhtml='';hist.forEach(m=>{hhtml+=`<div class="match"><div>${m.home} vs ${m.away}</div><div style="font-weight:900">${m.homeScore}-${m.awayScore} FT</div></div>`});if(!hist.length)hhtml='<div class="match"><div>Arsenal vs Chelsea</div><div style="font-weight:900">2-0 FT</div></div>';document.getElementById('historyList').innerHTML=hhtml;
-}
-async function loadData(){
-try{let r=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard');let j=await r.json();let arr=[];j.events.forEach(ev=>{let c=ev.competitions[0],comps=c.competitors,idxH=comps.findIndex(x=>x.homeAway==='home'),idxA=idxH===0?1:0;arr.push({league:c.league.name||'Premier League',home:comps[idxH].team.displayName,away:comps[idxA].team.displayName,homeScore:comps[idxH].score||0,awayScore:comps[idxA].score||0,state:c.status.type.state,time:c.status.type.state==='in'?c.status.displayClock:c.status.type.shortDetail,isNPFL:false})});arr.push({league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true},{league:'NPFL Nigeria',home:'Kano Pillars',away:'Rangers',homeScore:0,awayScore:0,state:'pre',time:"16:00",isNPFL:true},{league:'NPFL Nigeria',home:'Enyimba',away:'Plateau',homeScore:2,awayScore:1,state:'post',time:"FT",isNPFL:true});allMatches=arr;}catch(e){allMatches=[{league:'Premier League',home:'Arsenal',away:'Chelsea',homeScore:2,awayScore:1,state:'in',time:"78'",isNPFL:false},{league:'Premier League',home:'Man City',away:'Liverpool',homeScore:0,awayScore:0,state:'pre',time:"19:30",isNPFL:false},{league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true}];}render();}
+function render(){let filtered=allMatches.filter(m=>{if(currentFilter==='live')return m.state==='in';if(currentFilter==='today')return m.state==='pre';if(currentFilter==='all')return true;if(currentFilter==='npfl')return m.isNPFL;if(currentFilter==='ucl')return m.league.includes('Champions');return true;});let grouped={};filtered.forEach(m=>{if(!grouped[m.league])grouped[m.league]=[];grouped[m.league].push(m)});let html='';if(!filtered.length)html='<div style="text-align:center;padding:40px;color:#888">No matches<br><button onclick="setFilter(\'all\',document.querySelectorAll(\'.tab\')[2])" style="margin-top:10px;background:#ffcc00;border:none;padding:10px 20px;border-radius:20px;font-weight:800">Show All</button></div>';for(let lg in grouped){html+=`<div style="margin:18px 16px 8px;font-size:11px;color:#ffcc00;font-weight:900">${lg.toUpperCase()}</div>`;grouped[lg].forEach(m=>{html+=`<div class="match" onclick="alert('Lineup: ${m.home} vs ${m.away}\\nFormation 4-3-3\\nClick Clubs for details')"><div><div style="display:flex;gap:8px;margin-bottom:4px">⚽ <b>${m.home}</b></div><div style="display:flex;gap:8px;color:#bbb">⚽ ${m.away}</div></div><div class="score ${m.state==='in'?'live':''}">${m.homeScore}-${m.awayScore}<div style="font-size:10px">${m.time}</div></div></div>`});}document.getElementById('list').innerHTML=html;let hist=allMatches.filter(m=>m.state==='post');let hhtml='';hist.forEach(m=>{hhtml+=`<div class="match"><div>${m.home} vs ${m.away}</div><div style="font-weight:900">${m.homeScore}-${m.awayScore} FT</div></div>`});if(!hist.length)hhtml='<div class="match"><div>Man City vs Arsenal</div><div style="font-weight:900">2-1 FT</div></div><div class="match"><div>Real Madrid vs Barcelona</div><div style="font-weight:900">3-2 FT</div></div>';document.getElementById('historyList').innerHTML=hhtml;}
+function renderClubs(){let html='';clubs.forEach((c,i)=>{html+=`<div class="club-card" onclick="openClub(${i})"><img src="${c.logo}"><div><div style="font-weight:900">${c.name}</div><div style="font-size:11px;color:#aaa">${c.coach} • ${c.trophies.split(',')[0]}</div></div><div style="margin-left:auto">›</div></div>`});document.getElementById('clubsList').innerHTML=html;}
+function openClub(i){let c=clubs[i];document.getElementById('clubName').innerText=c.name;document.getElementById('clubInfo').innerText=c.name+' is one of the biggest clubs in the world.';document.getElementById('clubCups').innerText=c.trophies;document.getElementById('clubCoach').innerText=c.coach;let form='';if(c.players.length){c.players.forEach(p=>{form+=`<div class="player-dot" style="left:${p.x}%;top:${p.y}%"><div class="num">${p.num}</div><div class="name">${p.name}</div></div>`});}else{form='<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#fff;font-weight:900">Lineup loading... 4-3-3</div>';}document.getElementById('formation').innerHTML=form;let lgHtml='';legends.forEach((l,idx)=>{lgHtml+=`<span style="display:inline-block;background:#222;padding:6px 10px;border-radius:20px;margin:4px;border:1px solid #333">${idx+1}. ${l}</span>`});document.getElementById('legendsList').innerHTML=lgHtml;document.getElementById('clubModal').classList.add('show');}
+function closeClub(){document.getElementById('clubModal').classList.remove('show');}
+async function loadData(){try{let r=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard');let j=await r.json();let arr=[];j.events.forEach(ev=>{let comp=ev.competitions[0],cs=comp.competitors,ih=cs.findIndex(x=>x.homeAway==='home'),ia=ih===0?1:0;arr.push({league:comp.league.name||'Premier League',home:cs[ih].team.displayName,away:cs[ia].team.displayName,homeScore:cs[ih].score||0,awayScore:cs[ia].score||0,state:comp.status.type.state,time:comp.status.type.state==='in'?comp.status.displayClock:comp.status.type.shortDetail,isNPFL:false})});let r2=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard');let j2=await r2.json();j2.events.forEach(ev=>{let comp=ev.competitions[0],cs=comp.competitors,ih=cs.findIndex(x=>x.homeAway==='home'),ia=ih===0?1:0;arr.push({league:'La Liga',home:cs[ih].team.displayName,away:cs[ia].team.displayName,homeScore:cs[ih].score||0,awayScore:cs[ia].score||0,state:comp.status.type.state,time:comp.status.type.shortDetail,isNPFL:false})});let r3=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.champions/scoreboard');let j3=await r3.json();j3.events.forEach(ev=>{let comp=ev.competitions[0],cs=comp.competitors,ih=cs.findIndex(x=>x.homeAway==='home'),ia=ih===0?1:0;arr.push({league:'Champions League',home:cs[ih].team.displayName,away:cs[ia].team.displayName,homeScore:cs[ih].score||0,awayScore:cs[ia].score||0,state:comp.status.type.state,time:comp.status.type.shortDetail,isNPFL:false})});arr.push({league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true},{league:'NPFL Nigeria',home:'Kano Pillars',away:'Rangers',homeScore:0,awayScore:0,state:'pre',time:"16:00",isNPFL:true},{league:'NPFL Nigeria',home:'Plateau Utd',away:'Remo Stars',homeScore:2,awayScore:1,state:'post',time:"FT",isNPFL:true});allMatches=arr;}catch(e){allMatches=[{league:'Premier League',home:'Arsenal',away:'Man City',homeScore:2,awayScore:1,state:'in',time:"78'",isNPFL:false},{league:'La Liga',home:'Real Madrid',away:'Barcelona',homeScore:1,awayScore:1,state:'in',time:"45'",isNPFL:false},{league:'Champions League',home:'PSG',away:'Bayern',homeScore:0,awayScore:0,state:'pre',time:"20:00",isNPFL:false},{league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true}]}render();}
 loadData();setInterval(loadData,60000);
-
-function initReferral(){
-let code=localStorage.getItem('senior_ref_code');
-if(!code){code='SENIOR-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('senior_ref_code',code);}
-document.getElementById('refCode').innerText=code;
-let urlParams=new URLSearchParams(window.location.search);
-let ref=urlParams.get('ref');
-if(ref && ref!==code){
-let count=parseInt(localStorage.getItem('my_referrals')||'0');
-if(!sessionStorage.getItem('counted')){count++;localStorage.setItem('my_referrals',count);sessionStorage.setItem('counted','1');}
-}
-let myCount=parseInt(localStorage.getItem('my_referrals')||'3');
-document.getElementById('refCount').innerText=myCount;
-document.getElementById('refNeeded').innerText=Math.max(0,10-myCount);
-document.getElementById('refProgress').style.width=(myCount*10)+'%';
-if(myCount>=10){document.getElementById('refStatus').innerText='🎉 Ka cika 10!';document.getElementById('rewardBox').style.display='block';}
-}
-function copyRef(){let c=document.getElementById('refCode').innerText;let link=location.origin+location.pathname+'?ref='+c;navigator.clipboard.writeText(link);alert('An kwafa!\n'+link);}
-function shareRef(){let c=document.getElementById('refCode').innerText;let link=location.origin+location.pathname+'?ref='+c;if(navigator.share){navigator.share({title:'SENIOR ULTIMATE',text:'Shigo SENIOR ULTIMATE!',url:link});}else{copyRef();}}
+function initReferral(){let code=localStorage.getItem('senior_ref_code');if(!code){code='SENIOR-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('senior_ref_code',code);}document.getElementById('refCode').innerText=code;let urlParams=new URLSearchParams(window.location.search);let ref=urlParams.get('ref');if(ref&&ref!==code&&!sessionStorage.getItem('counted')){let count=parseInt(localStorage.getItem('my_referrals')||'3');count++;localStorage.setItem('my_referrals',count);sessionStorage.setItem('counted','1');}let myCount=parseInt(localStorage.getItem('my_referrals')||'3');document.getElementById('refCount').innerText=myCount;document.getElementById('totalRef').innerText=myCount;document.getElementById('refNeeded').innerText=Math.max(0,10-myCount);document.getElementById('refProgress').style.width=(myCount*10)+'%';if(myCount>=10){document.getElementById('refStatus').innerText='🎉 You reached 10! 750 Points!';document.getElementById('rewardBox').style.display='block';}if(myCount>=15){document.getElementById('refStatus').innerText='🔥 15 Reached! 1GB Data Bonus!';}}
+function copyRef(){let c=document.getElementById('refCode').innerText;let link=location.origin+location.pathname+'?ref='+c;navigator.clipboard.writeText(link);alert('Copied!\n'+link);}
+function shareRef(){let c=document.getElementById('refCode').innerText;let link=location.origin+location.pathname+'?ref='+c;if(navigator.share){navigator.share({title:'SENIOR ULTIMATE',text:'Join SENIOR ULTIMATE Live Scores!',url:link});}else{copyRef();}}
 setTimeout(initReferral,600);
 </script>
-</body>
-</html>
+</body></html>
