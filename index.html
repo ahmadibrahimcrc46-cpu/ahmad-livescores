@@ -55,6 +55,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 window.seniorDB = getFirestore(app);
 console.log("SENIOR ULTIMATE LIVE!");
+// --- SENIOR REFERRAL LIVE SYSTEM ---
+window.myUserId = localStorage.getItem('senior_user_id') || 'user_' + Date.now();
+localStorage.setItem('senior_user_id', window.myUserId);
+const urlParams = new URLSearchParams(window.location.search);
+window.refCode = urlParams.get('ref');
+window.myReferralLink = window.location.origin + window.location.pathname + "?ref=" + window.myUserId;
+console.log("🔗 Your Link:", window.myReferralLink);
 </script>
 <script>
 let allMatches=[],currentFilter='live';
