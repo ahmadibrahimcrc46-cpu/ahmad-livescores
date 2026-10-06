@@ -4,31 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SENIOR ULTIMATE</title>
-<link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/7/7d/Adidas_Telstar_18_%28cropped%29.png">
-<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/7/7d/Adidas_Telstar_18_%28cropped%29.png">
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#000000">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
-body{background:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.55)),url('https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=800');background-size:cover;background-position:center fixed;color:#fff;min-height:100vh;padding-bottom:85px}
-header{background:rgba(0,0,0,0.9);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:2px solid #ffcc00}
-.logo{display:flex;gap:10px;align-items:center;font-weight:900;font-size:19px}
+body{background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=800');background-size:cover;background-attachment:fixed;color:#fff;min-height:100vh;padding-bottom:95px}
+header{background:rgba(0,0,0,.92);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:2px solid #ffcc00}
+.logo{display:flex;gap:10px;align-items:center;font-weight:900}
 .ball{width:32px;height:32px;background:url('https://upload.wikimedia.org/wikipedia/commons/7/7d/Adidas_Telstar_18_%28cropped%29.png');background-size:cover;border-radius:50%;border:2px solid #ffcc00}
 .tabs{display:flex;gap:8px;padding:12px 16px;overflow-x:auto}
-.tab{padding:9px 18px;border-radius:22px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:700;cursor:pointer;white-space:nowrap}.tab.active{background:#ffcc00;color:#000;border-color:#ffcc00}
-.match{background:rgba(0,0,0,0.78);border-radius:14px;padding:14px;margin:0 16px 10px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,204,0,0.15);backdrop-filter:blur(6px)}
-.team-row{display:flex;align-items:center;gap:8px;padding:3px 0}
-.score{font-weight:900;background:rgba(255,255,255,0.1);padding:7px 12px;border-radius:10px;min-width:68px;text-align:center}.score.live{color:#ffcc00;background:rgba(255,204,0,0.2);border:1px solid #ffcc00}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.96);border-top:1px solid #222;display:flex;justify-content:space-around;padding:10px 0 22px;z-index:50;backdrop-filter:blur(20px)}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:#666;font-size:11px;font-weight:700;cursor:pointer}.nav-item.active{color:#ffcc00}.nav-item.ico{font-size:22px}
-.page{display:none;padding:16px}.page.active{display:block}
-.profile-card{background:rgba(0,0,0,0.75);border-radius:18px;padding:20px;text-align:center;border:1px solid rgba(255,204,0,0.2);margin:16px}
+.tab{padding:10px 20px;border-radius:25px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:800;cursor:pointer;white-space:nowrap}
+.tab.active{background:#ffcc00;color:#000;transform:scale(1.05)}
+.match{background:rgba(0,0,0,.82);border-radius:16px;padding:14px;margin:0 14px 10px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid #ffcc00}
+.score{font-weight:900;background:rgba(255,255,255,.12);padding:8px 14px;border-radius:12px;text-align:center;min-width:70px}
+.score.live{color:#ffcc00;border:1px solid #ffcc00;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.97);border-top:1px solid #222;display:flex;justify-content:space-around;padding:12px 0 24px;z-index:100}
+.nav-item{display:flex;flex-direction:column;align-items:center;color:#666;font-size:11px;font-weight:800;cursor:pointer}
+.nav-item.active{color:#ffcc00}
+.nav-item.ico{font-size:24px}
+.page{display:none}.page.active{display:block}
+.profile-card{background:rgba(0,0,0,.8);margin:20px;border-radius:20px;padding:24px;text-align:center;border:1px solid rgba(255,204,0,.3)}
 </style>
 </head>
 <body>
-<header><div class="logo"><div class="ball"></div>SENIOR <span style="color:#ffcc00">ULTIMATE</span></div><div style="background:#ffcc00;color:#000;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:900" id="liveBadge">LIVE ⚽</div></header>
+<header><div class="logo"><div class="ball"></div>SENIOR <span style="color:#ffcc00">ULTIMATE</span></div><div style="background:#ffcc00;color:#000;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:900">LIVE ⚽</div></header>
 
 <div id="homePage" class="page active">
 <div class="tabs">
@@ -40,29 +41,9 @@ header{background:rgba(0,0,0,0.9);padding:14px 16px;display:flex;justify-content
 <div id="list"></div>
 </div>
 
-<div id="historyPage" class="page">
-<h3 style="margin:10px 0;color:#ffcc00">📜 HISTORY - Sakamakon Jiya</h3>
-<div id="historyList"></div>
-</div>
+<div id="historyPage" class="page"><h3 style="margin:14px;color:#ffcc00">📜 HISTORY - Karshe</h3><div id="historyList"></div></div>
 
-<div id="profilePage" class="page">
-<div class="profile-card">
-<div class="ball" style="width:80px;height:80px;margin:0 auto 12px;border-width:3px"></div>
-<h2>CEO AHMAD</h2>
-<p style="color:#ffcc00;font-weight:800">SENIOR ULTIMATE OWNER 👑</p>
-<p style="color:#aaa;margin-top:10px;font-size:13px">App daga Ibadan zuwa Duniya 🌍</p>
-<p style="color:#aaa;font-size:13px">Livescores kamar FotMob amma na Hausa!</p>
-<div style="margin-top:16px;background:rgba(255,204,0,0.15);padding:12px;border-radius:12px;border:1px solid #ffcc00">
-<div style="font-size:12px;color:#ffcc00;font-weight:800">STATS DINKA</div>
-<div style="display:flex;justify-content:space-around;margin-top:8px">
-<div><div style="font-weight:900;font-size:18px">1.2k+</div><div style="font-size:11px;color:#888">Users</div></div>
-<div><div style="font-weight:900;font-size:18px">50+</div><div style="font-size:11px;color:#888">Leagues</div></div>
-<div><div style="font-weight:900;font-size:18px">Live</div><div style="font-size:11px;color:#888">24/7</div></div>
-</div>
-</div>
-<button onclick="shareApp()" style="margin-top:16px;width:100%;background:#ffcc00;color:#000;border:none;padding:14px;border-radius:14px;font-weight:900">SHARE APP 📤</button>
-</div>
-</div>
+<div id="profilePage" class="page"><div class="profile-card"><div class="ball" style="width:90px;height:90px;margin:0 auto 14px"></div><h2>CEO AHMAD</h2><p style="color:#ffcc00;font-weight:900">SENIOR ULTIMATE V5 👑</p><p style="color:#aaa;margin-top:6px">Daga Ibadan - Real App Mode!</p><div style="margin-top:18px;background:rgba(255,204,0,.15);padding:12px;border-radius:12px;font-size:13px">✅ Babu Safari Bar<br>✅ Today/All na aiki<br>✅ Home/History/Profile</div><button onclick="navigator.share?navigator.share({title:'SENIOR ULTIMATE',url:location.href}):alert('ahmad-livescores.vercel.app')" style="margin-top:16px;width:100%;background:#ffcc00;color:#000;border:none;padding:14px;border-radius:14px;font-weight:900">SHARE APP 📤</button></div></div>
 
 <div class="bottom-nav">
 <div class="nav-item active" onclick="showPage('home',this)"><div class="ico">🏠</div>Home</div>
@@ -71,82 +52,26 @@ header{background:rgba(0,0,0,0.9);padding:14px 16px;display:flex;justify-content
 </div>
 
 <script>
-let allMatches=[];
-let currentFilter='live';
-
-function showPage(name,el){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-document.getElementById(name+'Page').classList.add('active');
-el.classList.add('active');
-}
-
-function setFilter(f,el){
-document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-el.classList.add('active');
-currentFilter=f;
-render();
-}
-
+let allMatches=[];let currentFilter='live';
+function showPage(name,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById(name+'Page').classList.add('active');el.classList.add('active');}
+function setFilter(f,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');currentFilter=f;render();}
 function render(){
 let filtered=allMatches.filter(m=>{
-if(currentFilter==='live') return m.state==='in';
-if(currentFilter==='today') return m.state==='pre';
-if(currentFilter==='all') return true;
-if(currentFilter==='npfl') return m.isNPFL;
+if(currentFilter==='live')return m.state==='in';
+if(currentFilter==='today')return m.state==='pre';
+if(currentFilter==='all')return true;
+if(currentFilter==='npfl')return m.isNPFL;
 return true;
 });
-let grouped={};
-filtered.forEach(m=>{if(!grouped[m.league]) grouped[m.league]=[]; grouped[m.league].push(m)});
-
-let html='';
-if(!filtered.length){html='<div style="text-align:center;padding:50px;color:#888">Babu wasa a wannan rukunin<br>Try wani</div>'}
-for(let lg in grouped){
-html+=`<div style="margin:18px 16px 8px;font-size:11px;color:#ffcc00;font-weight:800">${lg.toUpperCase()} ⚽</div>`;
-grouped[lg].forEach(m=>{
-html+=`<div class="match"><div><div class="team-row">⚽ <b>${m.home}</b></div><div class="team-row">⚽ <span style="color:#ccc">${m.away}</span></div></div><div class="score ${m.state==='in'?'live':''}">${m.sh}-${m.sa}<div style="font-size:10px;margin-top:2px">${m.time}</div></div></div>`;
-});
-}
+let grouped={};filtered.forEach(m=>{if(!grouped[m.league])grouped[m.league]=[];grouped[m.league].push(m)});
+let html='';if(!filtered.length)html='<div style="text-align:center;padding:50px;color:#888">Babu wasa a wannan rukunin<br><br><button onclick="setFilter(\'all\',document.querySelectorAll(\'.tab\')[2])" style="background:#ffcc00;border:none;padding:10px 20px;border-radius:20px;font-weight:800">Duba All</button></div>';
+for(let lg in grouped){html+=`<div style="margin:18px 16px 8px;font-size:11px;color:#ffcc00;font-weight:900;letter-spacing:1px">${lg.toUpperCase()}</div>`;grouped[lg].forEach(m=>{html+=`<div class="match"><div><div style="display:flex;gap:8px;margin-bottom:4px">⚽ <b>${m.home}</b></div><div style="display:flex;gap:8px;color:#bbb">⚽ ${m.away}</div></div><div class="score ${m.state==='in'?'live':''}">${m.homeScore}-${m.awayScore}<div style="font-size:10px;margin-top:2px">${m.time}</div></div></div>`});}
 document.getElementById('list').innerHTML=html;
-
-// History
-let hist = allMatches.filter(m=>m.state==='post').slice(0,10);
-let hHtml='';
-hist.forEach(m=>{hHtml+=`<div class="match"><div>⚽ ${m.home}<br>⚽ ${m.away}</div><div style="font-weight:900">${m.sh}-${m.sa}<div style="font-size:10px;color:#888">FT</div></div></div>`});
-if(!hist.length) hHtml='<div class="match"><div>Arsenal 2-0 Chelsea</div><div>FT</div></div><div class="match"><div>Man City 1-1 Liverpool</div><div>FT</div></div>';
-document.getElementById('historyList').innerHTML=hHtml;
+let hist=allMatches.filter(m=>m.state==='post');let hhtml='';hist.forEach(m=>{hhtml+=`<div class="match"><div>${m.home} vs ${m.away}</div><div style="font-weight:900">${m.homeScore}-${m.awayScore} FT</div></div>`});if(!hist.length)hhtml='<div class="match"><div>Arsenal vs Chelsea</div><div style="font-weight:900">2-0 FT</div></div><div class="match"><div>Kano Pillars vs Enyimba</div><div style="font-weight:900">1-1 FT</div></div>';document.getElementById('historyList').innerHTML=hhtml;
 }
-
-async function load(){
-try{
-let leagues=['eng.1','esp.1','ger.1'];
-let comb=[];
-for(let lg of leagues){
-let r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/${lg}/scoreboard`);
-let j=await r.json();
-if(j.events) j.events.forEach(e=>{
-let c=e.competitions[0], t=c.competitors;
-comb.push({league:c.league.name,home:t[0].team.displayName,away:t[1].team.displayName,sh:t[0].score||0,sa:t[1].score||0,state:c.status.type.state,time:c.status.type.state==='in'?c.status.displayClock:c.status.type.shortDetail,isNPFL:false});
-});
-}
-comb.push({league:'NPFL - Nigeria',home:'Shooting Stars',away:'Enyimba',sh:1,sa:0,state:'in',time:"67'",isNPFL:true});
-comb.push({league:'NPFL - Nigeria',home:'Kano Pillars',away:'Rangers',sh:0,sa:0,state:'pre',time:"16:00",isNPFL:true});
-allMatches=comb;
-}catch(e){
-allMatches=[
-{league:'Premier League',home:'Arsenal',away:'Chelsea',sh:2,sa:1,state:'in',time:"78'",isNPFL:false},
-{league:'Premier League',home:'Man City',away:'Liverpool',sh:1,sa:1,state:'in',time:"54'",isNPFL:false},
-{league:'Premier League',home:'Aston Villa',away:'Brentford',sh:0,sa:0,state:'pre',time:"19:30",isNPFL:false},
-{league:'Premier League',home:'Tottenham',away:'Man Utd',sh:0,sa:0,state:'pre',time:"21:00",isNPFL:false},
-{league:'LaLiga',home:'Barcelona',away:'Real Madrid',sh:0,sa:0,state:'pre',time:"Tomorrow",isNPFL:false},
-{league:'NPFL - Nigeria',home:'Shooting Stars',away:'Enyimba',sh:1,sa:0,state:'in',time:"67'",isNPFL:true},
-{league:'NPFL - Nigeria',home:'Kano Pillars',away:'Rangers',sh:2,sa:1,state:'post',time:"FT",isNPFL:true}
-];
-}
-render();
-}
-function shareApp(){if(navigator.share){navigator.share({title:'SENIOR ULTIMATE',text:'Sauke App dina!',url:location.href})}else{alert('Share link: '+location.href)}}
-load();setInterval(load,60000);
+async function loadData(){
+try{let r=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard');let j=await r.json();let arr=[];j.events.forEach(ev=>{let c=ev.competitions[0],comps=c.competitors,idxH=comps.findIndex(x=>x.homeAway==='home'),idxA=idxH===0?1:0;arr.push({league:c.league.name||'Premier League',home:comps[idxH].team.displayName,away:comps[idxA].team.displayName,homeScore:comps[idxH].score||0,awayScore:comps[idxA].score||0,state:c.status.type.state,time:c.status.type.state==='in'?c.status.displayClock:c.status.type.shortDetail,isNPFL:false})});arr.push({league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true},{league:'NPFL Nigeria',home:'Kano Pillars',away:'Rangers Int',homeScore:0,awayScore:0,state:'pre',time:"16:00",isNPFL:true},{league:'NPFL Nigeria',home:'Enyimba',away:'Plateau Utd',homeScore:2,awayScore:1,state:'post',time:"FT",isNPFL:true});allMatches=arr;}catch(e){allMatches=[{league:'Premier League',home:'Arsenal',away:'Chelsea',homeScore:2,awayScore:1,state:'in',time:"78'",isNPFL:false},{league:'Premier League',home:'Man City',away:'Liverpool',homeScore:0,awayScore:0,state:'pre',time:"19:30",isNPFL:false},{league:'Premier League',home:'Tottenham',away:'Man Utd',homeScore:1,awayScore:0,state:'post',time:"FT",isNPFL:false},{league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true}];}render();}
+loadData();setInterval(loadData,60000);
 </script>
 </body>
 </html>
