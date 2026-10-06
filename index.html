@@ -3,25 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENIOR ULTIMATE - Download App</title>
+<title>SENIOR ULTIMATE</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
 body{
- background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d');
+ background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=800');
  background-size:cover;
  background-attachment:fixed;
  background-position:center;
  color:#fff;padding-bottom:90px;min-height:100vh
 }
-header{background:rgba(22,22,22,0.95);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:1px solid #2a2a2a;backdrop-filter:blur(10px)}
+header{background:rgba(0,0,0,0.8);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:2px solid #ffcc00}
 .logo{font-weight:900;font-size:20px}.logo span{color:#ffcc00}
-.install-banner{background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
-.install-banner button{background:#000;color:#ffcc00;border:none;padding:10px 18px;border-radius:22px;font-weight:900;cursor:pointer}
-.tabs{display:flex;gap:8px;padding:14px 16px;overflow-x:auto}
-.tab{padding:9px 18px;border-radius:22px;background:rgba(37,37,37,0.9);border:none;color:#aaa;font-weight:600;cursor:pointer;backdrop-filter:blur(5px)}.tab.active{background:#ffcc00;color:#000}
-.match{background:rgba(30,30,30,0.9);border-radius:16px;padding:16px;margin:0 16px 12px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(10px);border:1px solid rgba(255,204,0,0.1)}
-.team-row{display:flex;align-items:center;gap:10px;padding:4px 0}
-.team-logo{width:26px;height:26px;background:#2a2a2a;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.team-logo img{width:100%;height:100%}
-.score{font-weight:900;background:#2a2a2a;padding:8px 14px;border-radius:10px;min-width:70px;text-align:center}.score.live{color:#ffcc00;background:#ffcc0015;border:1px solid #ffcc00}
-.popup{position:fixed;bottom:20px;left:16px;right:16px;background:#fff;color:#000;border-radius:20px;padding:20px;display:flex;gap:16px;align-items:center;z
+.install-banner{background:#ffcc00;color:#000;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
+.install-banner button{background:#000;color:#ffcc00;border:none;padding:8px 16px;border-radius:20px;font-weight:900}
+.tabs{display:flex;gap:8px;padding:12px 16px;overflow-x:auto}
+.tab{padding:8px 16px;border-radius:20px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:#fff;font-weight:600;backdrop-filter:blur(10px)}.tab.active{background:#ffcc00;color:#000;border-color:#ffcc00}
+.match{background:rgba(0,0,0,0.75);border-radius:14px;padding:14px;margin:0 16px 10px;display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,204,0,0.2);backdrop-filter:blur(8px)}
+.team-row{display:flex;align-items:center;gap:8px;padding:3px 0}
+.score{font-weight:900;background:rgba(255,255,255,0.1);padding:6px 12px;border-radius:8px;min-width:65px;text-align:center}.score.live{color:#ffcc00;background:rgba(255,204,0,0.2);border:1px solid #ffcc00}
+</style>
+</head>
+<body>
+<div class="install-banner"><div>👑 SENIOR ULTIMATE - BALL WALLPAPER ⚽</div><button onclick="alert('Danna Share > Add to Home Screen')">DOWNLOAD</button></div>
+<header><div class="logo">SENIOR <span>ULTIMATE</span></div><div style="background:#ffcc00;color:#000;padding:4px 8px;border-radius:12px;font-size:11px;font-weight:800">LIVE ⚽</div></header>
+<div class="tabs"><button class="tab active">🔴 Live</button><button class="tab">Today</button><button class="tab">All</button><button class="tab">🇳🇬 NPFL</button></div>
+<div style="margin:16px;font-size:11px;color:#ffcc00;font-weight:800">PREMIER LEAGUE ⚽</div>
+<div class="match"><div><div class="team-row">⚽ <b>Arsenal</b></div><div class="team-row">⚽ <span style="color:#ccc">Chelsea</span></div></div><div class="score live">2-1<div style="font-size:10px">78'</div></div></div>
+<div class="match"><div><div class="team-row">⚽ <b>Man City</b></div><div class="team-row">⚽ <span style="color:#ccc">Liverpool</span></div></div><div class="score live">1-1<div style="font-size:10px">54'</div></div></div>
+<div style="text-align:center;padding:30px;color:#ffcc00;font-weight:800">WALLPAPER YA CHANZA! ⚽🔥</div>
+<script>
+async function load(){try{let r=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard');let j=await r.json();let h='';j.events.slice(0,5).forEach(e=>{let c=e.competitions[0],t=c.competitors;h+=`<div class="match"><div><div class="team-row">⚽ <b>${t[0].team.displayName}</b></div><div class="team-row">⚽ ${t[1].team.displayName}</div></div><div class="score ${c.status.type.state=='in'?'live':''}">${t[0].score}-${t[1].score}<div style="font-size:10px">${c.status.displayClock||c.status.type.shortDetail}</div></div></div>`});if(h)document.body.innerHTML+=h}catch(e){}}
+load();
+</script>
+</body>
+</html>
