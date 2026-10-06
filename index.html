@@ -25,7 +25,7 @@ header{background:rgba(0,0,0,.92);padding:14px 16px;display:flex;justify-content
 .nav-item.active{color:#ffcc00}
 .nav-item.ico{font-size:24px}
 .page{display:none}.page.active{display:block}
-.profile-card{background:rgba(0,0,0,.8);margin:20px;border-radius:20px;padding:24px;text-align:center;border:1px solid rgba(255,204,0,.3)}
+.profile-card{background:rgba(0,0,0,.8);margin:14px;border-radius:20px;padding:20px;text-align:center;border:1px solid rgba(255,204,0,.3)}
 </style>
 </head>
 <body>
@@ -41,9 +41,32 @@ header{background:rgba(0,0,0,.92);padding:14px 16px;display:flex;justify-content
 <div id="list"></div>
 </div>
 
-<div id="historyPage" class="page"><h3 style="margin:14px;color:#ffcc00">📜 HISTORY - Karshe</h3><div id="historyList"></div></div>
+<div id="historyPage" class="page"><h3 style="margin:14px;color:#ffcc00">📜 HISTORY</h3><div id="historyList"></div></div>
 
-<div id="profilePage" class="page"><div class="profile-card"><div class="ball" style="width:90px;height:90px;margin:0 auto 14px"></div><h2>CEO AHMAD</h2><p style="color:#ffcc00;font-weight:900">SENIOR ULTIMATE V5 👑</p><p style="color:#aaa;margin-top:6px">Daga Ibadan - Real App Mode!</p><div style="margin-top:18px;background:rgba(255,204,0,.15);padding:12px;border-radius:12px;font-size:13px">✅ Babu Safari Bar<br>✅ Today/All na aiki<br>✅ Home/History/Profile</div><button onclick="navigator.share?navigator.share({title:'SENIOR ULTIMATE',url:location.href}):alert('ahmad-livescores.vercel.app')" style="margin-top:16px;width:100%;background:#ffcc00;color:#000;border:none;padding:14px;border-radius:14px;font-weight:900">SHARE APP 📤</button></div></div>
+<div id="profilePage" class="page">
+<div class="profile-card">
+<div class="ball" style="width:80px;height:80px;margin:0 auto 12px"></div>
+<h2>CEO AHMAD</h2>
+<p style="color:#ffcc00;font-weight:900">SENIOR ULTIMATE V6 👑</p>
+
+<div style="margin-top:18px;background:linear-gradient(135deg,#ffcc00,#ff9900);color:#000;padding:16px;border-radius:16px;text-align:left">
+<h3 style="font-size:15px">🎁 REFERRAL - SAMU 20%!</h3>
+<p style="font-size:12px;margin:6px 0">Tura mutum 10 suyi register!</p>
+<div style="background:#000;color:#ffcc00;padding:12px;border-radius:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center">
+<span id="refCode" style="font-weight:900">SENIOR-...</span>
+<button onclick="copyRef()" style="background:#ffcc00;border:none;padding:6px 12px;border-radius:20px;font-weight:900;font-size:12px">COPY</button>
+</div>
+<div style="display:flex;gap:10px;margin:10px 0">
+<div style="flex:1;background:rgba(0,0,0,.3);padding:10px;border-radius:12px;text-align:center"><div id="refCount" style="font-size:22px;font-weight:900">0</div><div style="font-size:11px">Mutum</div></div>
+<div style="flex:1;background:rgba(0,0,0,.3);padding:10px;border-radius:12px;text-align:center"><div id="refNeeded" style="font-size:22px;font-weight:900">10</div><div style="font-size:11px">Saura</div></div>
+</div>
+<div style="background:#000;height:8px;border-radius:10px;overflow:hidden"><div id="refProgress" style="height:100%;background:#fff;width:0%;transition:.5s"></div></div>
+<p id="refStatus" style="font-size:12px;margin-top:8px;font-weight:700">Tura link din ka!</p>
+<button onclick="shareRef()" style="margin-top:14px;width:100%;background:#000;color:#ffcc00;border:none;padding:14px;border-radius:14px;font-weight:900">TURA LINK YANZU 📤</button>
+<p id="rewardBox" style="display:none;margin-top:12px;background:#000;color:#00ff88;padding:12px;border-radius:12px;font-weight:900">🎉 MUBARAK! Ka cika 10! Kira: 080... ka karbi 20%!</p>
+</div>
+</div>
+</div>
 
 <div class="bottom-nav">
 <div class="nav-item active" onclick="showPage('home',this)"><div class="ico">🏠</div>Home</div>
@@ -64,14 +87,34 @@ if(currentFilter==='npfl')return m.isNPFL;
 return true;
 });
 let grouped={};filtered.forEach(m=>{if(!grouped[m.league])grouped[m.league]=[];grouped[m.league].push(m)});
-let html='';if(!filtered.length)html='<div style="text-align:center;padding:50px;color:#888">Babu wasa a wannan rukunin<br><br><button onclick="setFilter(\'all\',document.querySelectorAll(\'.tab\')[2])" style="background:#ffcc00;border:none;padding:10px 20px;border-radius:20px;font-weight:800">Duba All</button></div>';
-for(let lg in grouped){html+=`<div style="margin:18px 16px 8px;font-size:11px;color:#ffcc00;font-weight:900;letter-spacing:1px">${lg.toUpperCase()}</div>`;grouped[lg].forEach(m=>{html+=`<div class="match"><div><div style="display:flex;gap:8px;margin-bottom:4px">⚽ <b>${m.home}</b></div><div style="display:flex;gap:8px;color:#bbb">⚽ ${m.away}</div></div><div class="score ${m.state==='in'?'live':''}">${m.homeScore}-${m.awayScore}<div style="font-size:10px;margin-top:2px">${m.time}</div></div></div>`});}
+let html='';if(!filtered.length)html='<div style="text-align:center;padding:50px;color:#888">Babu wasa<br><br><button onclick="setFilter(\'all\',document.querySelectorAll(\'.tab\')[2])" style="background:#ffcc00;border:none;padding:10px 20px;border-radius:20px;font-weight:800">Duba All</button></div>';
+for(let lg in grouped){html+=`<div style="margin:18px 16px 8px;font-size:11px;color:#ffcc00;font-weight:900">${lg.toUpperCase()}</div>`;grouped[lg].forEach(m=>{html+=`<div class="match"><div><div style="display:flex;gap:8px;margin-bottom:4px">⚽ <b>${m.home}</b></div><div style="display:flex;gap:8px;color:#bbb">⚽ ${m.away}</div></div><div class="score ${m.state==='in'?'live':''}">${m.homeScore}-${m.awayScore}<div style="font-size:10px">${m.time}</div></div></div>`});}
 document.getElementById('list').innerHTML=html;
-let hist=allMatches.filter(m=>m.state==='post');let hhtml='';hist.forEach(m=>{hhtml+=`<div class="match"><div>${m.home} vs ${m.away}</div><div style="font-weight:900">${m.homeScore}-${m.awayScore} FT</div></div>`});if(!hist.length)hhtml='<div class="match"><div>Arsenal vs Chelsea</div><div style="font-weight:900">2-0 FT</div></div><div class="match"><div>Kano Pillars vs Enyimba</div><div style="font-weight:900">1-1 FT</div></div>';document.getElementById('historyList').innerHTML=hhtml;
+let hist=allMatches.filter(m=>m.state==='post');let hhtml='';hist.forEach(m=>{hhtml+=`<div class="match"><div>${m.home} vs ${m.away}</div><div style="font-weight:900">${m.homeScore}-${m.awayScore} FT</div></div>`});if(!hist.length)hhtml='<div class="match"><div>Arsenal vs Chelsea</div><div style="font-weight:900">2-0 FT</div></div>';document.getElementById('historyList').innerHTML=hhtml;
 }
 async function loadData(){
-try{let r=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard');let j=await r.json();let arr=[];j.events.forEach(ev=>{let c=ev.competitions[0],comps=c.competitors,idxH=comps.findIndex(x=>x.homeAway==='home'),idxA=idxH===0?1:0;arr.push({league:c.league.name||'Premier League',home:comps[idxH].team.displayName,away:comps[idxA].team.displayName,homeScore:comps[idxH].score||0,awayScore:comps[idxA].score||0,state:c.status.type.state,time:c.status.type.state==='in'?c.status.displayClock:c.status.type.shortDetail,isNPFL:false})});arr.push({league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true},{league:'NPFL Nigeria',home:'Kano Pillars',away:'Rangers Int',homeScore:0,awayScore:0,state:'pre',time:"16:00",isNPFL:true},{league:'NPFL Nigeria',home:'Enyimba',away:'Plateau Utd',homeScore:2,awayScore:1,state:'post',time:"FT",isNPFL:true});allMatches=arr;}catch(e){allMatches=[{league:'Premier League',home:'Arsenal',away:'Chelsea',homeScore:2,awayScore:1,state:'in',time:"78'",isNPFL:false},{league:'Premier League',home:'Man City',away:'Liverpool',homeScore:0,awayScore:0,state:'pre',time:"19:30",isNPFL:false},{league:'Premier League',home:'Tottenham',away:'Man Utd',homeScore:1,awayScore:0,state:'post',time:"FT",isNPFL:false},{league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true}];}render();}
+try{let r=await fetch('https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard');let j=await r.json();let arr=[];j.events.forEach(ev=>{let c=ev.competitions[0],comps=c.competitors,idxH=comps.findIndex(x=>x.homeAway==='home'),idxA=idxH===0?1:0;arr.push({league:c.league.name||'Premier League',home:comps[idxH].team.displayName,away:comps[idxA].team.displayName,homeScore:comps[idxH].score||0,awayScore:comps[idxA].score||0,state:c.status.type.state,time:c.status.type.state==='in'?c.status.displayClock:c.status.type.shortDetail,isNPFL:false})});arr.push({league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true},{league:'NPFL Nigeria',home:'Kano Pillars',away:'Rangers',homeScore:0,awayScore:0,state:'pre',time:"16:00",isNPFL:true},{league:'NPFL Nigeria',home:'Enyimba',away:'Plateau',homeScore:2,awayScore:1,state:'post',time:"FT",isNPFL:true});allMatches=arr;}catch(e){allMatches=[{league:'Premier League',home:'Arsenal',away:'Chelsea',homeScore:2,awayScore:1,state:'in',time:"78'",isNPFL:false},{league:'Premier League',home:'Man City',away:'Liverpool',homeScore:0,awayScore:0,state:'pre',time:"19:30",isNPFL:false},{league:'NPFL Nigeria',home:'Shooting Stars',away:'Enyimba',homeScore:1,awayScore:0,state:'in',time:"67'",isNPFL:true}];}render();}
 loadData();setInterval(loadData,60000);
+
+function initReferral(){
+let code=localStorage.getItem('senior_ref_code');
+if(!code){code='SENIOR-'+Math.random().toString(36).substr(2,6).toUpperCase();localStorage.setItem('senior_ref_code',code);}
+document.getElementById('refCode').innerText=code;
+let urlParams=new URLSearchParams(window.location.search);
+let ref=urlParams.get('ref');
+if(ref && ref!==code){
+let count=parseInt(localStorage.getItem('my_referrals')||'0');
+if(!sessionStorage.getItem('counted')){count++;localStorage.setItem('my_referrals',count);sessionStorage.setItem('counted','1');}
+}
+let myCount=parseInt(localStorage.getItem('my_referrals')||'3');
+document.getElementById('refCount').innerText=myCount;
+document.getElementById('refNeeded').innerText=Math.max(0,10-myCount);
+document.getElementById('refProgress').style.width=(myCount*10)+'%';
+if(myCount>=10){document.getElementById('refStatus').innerText='🎉 Ka cika 10!';document.getElementById('rewardBox').style.display='block';}
+}
+function copyRef(){let c=document.getElementById('refCode').innerText;let link=location.origin+location.pathname+'?ref='+c;navigator.clipboard.writeText(link);alert('An kwafa!\n'+link);}
+function shareRef(){let c=document.getElementById('refCode').innerText;let link=location.origin+location.pathname+'?ref='+c;if(navigator.share){navigator.share({title:'SENIOR ULTIMATE',text:'Shigo SENIOR ULTIMATE!',url:link});}else{copyRef();}}
+setTimeout(initReferral,600);
 </script>
 </body>
 </html>
