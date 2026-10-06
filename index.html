@@ -3,34 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIZANI - Download App</title>
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiTUlaQU5JIFVMVElNQVRFIC0gTGl2ZSBTY29yZXMiLCJzaG9ydF9uYW1lIjoiTUlaQU5JIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBlMGUwZSIsInRoZW1lX2NvbG9yIjoiIzAwZmY4OCIsImljb25zIjpbXX0=">
+<title>SENIOR ULTIMATE - Download App</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,sans-serif}
 body{background:#0e0e0e;color:#fff;padding-bottom:90px}
 header{background:#161616;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;border-bottom:1px solid #2a2a2a}
-.logo{font-weight:900;font-size:22px}.logo span{color:#00ff88}
-.install-banner{background:linear-gradient(90deg,#00ff88,#00cc6a);color:#000;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
-.install-banner button{background:#000;color:#00ff88;border:none;padding:10px 18px;border-radius:22px;font-weight:900;cursor:pointer}
+.logo{font-weight:900;font-size:20px;letter-spacing:-0.5px}.logo span{color:#ffcc00}
+.install-banner{background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
+.install-banner button{background:#000;color:#ffcc00;border:none;padding:10px 18px;border-radius:22px;font-weight:900;cursor:pointer}
 .tabs{display:flex;gap:8px;padding:14px 16px;overflow-x:auto}
-.tab{padding:9px 18px;border-radius:22px;background:#252525;border:none;color:#aaa;font-weight:600;cursor:pointer}.tab.active{background:#fff;color:#000}
+.tab{padding:9px 18px;border-radius:22px;background:#252525;border:none;color:#aaa;font-weight:600;cursor:pointer}.tab.active{background:#ffcc00;color:#000}
 .match{background:#1e1e1e;border-radius:16px;padding:16px;margin:0 16px 12px;display:flex;justify-content:space-between;align-items:center}
 .team-row{display:flex;align-items:center;gap:10px;padding:4px 0}
 .team-logo{width:26px;height:26px;background:#2a2a2a;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .team-logo img{width:100%;height:100%}
-.score{font-weight:900;background:#2a2a2a;padding:8px 14px;border-radius:10px;min-width:70px;text-align:center}.score.live{color:#00ff88;background:#00ff8815;border:1px solid #00ff88}
+.score{font-weight:900;background:#2a2a2a;padding:8px 14px;border-radius:10px;min-width:70px;text-align:center}.score.live{color:#ffcc00;background:#ffcc0015;border:1px solid #ffcc00}
 .popup{position:fixed;bottom:20px;left:16px;right:16px;background:#fff;color:#000;border-radius:20px;padding:20px;display:flex;gap:16px;align-items:center;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
-.popup-icon{width:56px;height:56px;background:#000;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#00ff88;font-size:20px}
+.popup-icon{width:56px;height:56px;background:#000;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#ffcc00;font-size:22px}
 .ad-box{background:#161616;border:1px dashed #333;border-radius:16px;margin:16px;padding:14px;text-align:center;color:#666;font-size:11px}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#161616;display:flex;justify-content:space-around;padding:12px 0 20px;border-top:1px solid #2a2a2a}
-.nav-item{color:#666;text-align:center;font-size:10px;font-weight:600}.nav-item.active{color:#fff}
+.nav-item{color:#666;text-align:center;font-size:10px;font-weight:600}.nav-item.active{color:#ffcc00}
 </style>
 </head>
 <body>
 
-<div class="install-banner" id="topBanner">
-<div>📲 MIZANI ULTIMATE</div>
-<button id="installBtn" onclick="installApp()">DOWNLOAD APP</button>
+<div class="install-banner">
+<div>👑 SENIOR ULTIMATE</div>
+<button onclick="installApp()">DOWNLOAD APP</button>
 </div>
 
 <header>
+<div class="logo">SENIOR <span>ULTIMATE</span></div>
+<div style="font-size:12px;color:#888">From Ibadan to World 🌍</div>
+<div style="background:#ffcc00;color:#000;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:800" onclick="location.reload()">LIVE</div>
+</header>
+
+<div class="tabs">
+<button class="tab active" onclick="setF('live',this)">🔴 Live</button>
+<button class="tab" onclick="setF('today',this)">Today</button>
+<button class="tab" onclick="setF('all',this)">All</button>
+<button class="tab" onclick="setF('npfl',this)">🇳🇬 NPFL</button>
+</div>
+
+<div id="list"><div style="text-align:center;padding:40px;color:#555">Ana jawo wasanni... ⚽</div></div>
+
+<div class="ad-box">SENIOR ADS - Anan za ka samu kudi $</div>
+
+<div class="popup" id="installPopup">
+<div class="popup-icon">S</div>
+<div style="flex:1">
+<div style="font-weight:900;font-size:16px">Download SENIOR ULTIMATE</div>
+<div style="font-size:12px;color:#666">App mafi sauri a Najeriya!</div>
+</div>
+<button onclick="installApp()" style="background:#000;color:#fff;border:none;padding:12px 18px;border-radius:22px;font-weight:800">DOWNLOAD</button>
+<div onclick="this.parentElement.style.display='none'" style="margin-left:6px;color:#999;font-weight:800;cursor:pointer">✕</div>
+</div>
+
+<script>
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;});
+function installApp(){
+ if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(c=>{if(c.outcome==='accepted')document.getElementById('installPopup').style.display='none';deferredPrompt=null;});}
+ else{alert('Danna ⋮ a sama > Add to Home Screen > Install\n\nDon sanya SENIOR ULTIMATE a wayarka!');}
+}
+let all=[];
+async function loadReal(){
+ try{
+  let leagues=['eng.1','esp.1'];let comb=[];
+  for(let lg of leagues){
+   let r=await fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/${lg}/scoreboard`);
+   let j=await r.json();
+   if(j.events) comb=comb.concat(j.events.map(e=>{
+    let c=e.competitions[0],co=c.competitors;
+    return {ln:c.league.name,h:co[0].team.displayName,a:co[1].team.displayName,lh:co[0].team.logo,la:co[1].team.logo,sh:co[0].score||0,sa:co[1].score||0,st:c.status.type.state,clk:c.status.displayClock||c.status.type.detail,tm:c.status.type.shortDetail,np:false}
+   }));
+  }
+  all=comb; if(all.length<2) throw 'x';
+ }catch(e){
+  all=[
+   {ln:'Premier League',h:'Arsenal',a:'Chelsea',lh:'https://a.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fsoccer%2F500%2F359.png',la:'https://a.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fsoccer%2F500%2F363.png',sh:2,sa:1,st:'in',clk:"78'",tm:'LIVE',np:false},
+   {ln:'NPFL - Nigeria',h:'Shooting Stars',a:'Enyimba',lh:'',la:'',sh:1,sa:0,st:'in',clk:"54'",tm:'LIVE',np:true},
+   {ln:'Premier League',h:'Aston Villa',a:'Brentford',lh:'',la:'',sh:0,sa:0,st:'pre',clk:'19:30',tm:'Today',np:false},
+  ];
+ }
+ render();
+}
+let cur='live';
+function setF(f,el){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));el.classList.add('active');cur=f;render()}
+function render(){
+ let filt=all.filter(m=>{if(cur==='live')return m.st==='in';if(cur==='npfl')return m.np;if(cur==='today')return true;return true;});
+ let gr={};filt.forEach(m=>{if(!gr[m.ln])gr[m.ln]=[];gr[m.ln].push(m);});
+ let html='';
+ for(let g in gr){
+  html+=`<div style="margin:18px 16px 8px;font-size:11px;color:#888;font-weight:800">${g.toUpperCase()}</div>`;
+  gr[g].forEach(m=>{
+   html+=`<div class="match"><div style="flex:1"><div class="team-row"><div class="team-logo">${m.lh?`<img src="${m.lh}">`:'⚽'}</div><b>${m.h}</b></div><div class="team-row"><div class="team-logo">${m.la?`<img src="${m.la}">`:'⚽'}</div><span style="color:#aaa">${m.a}</span></div></div><div class="score ${m.st==='in'?'live':''}">${m.sh}-${m.sa}<div style="font-size:10px;margin-top:3px">${m.st==='in'?m.clk:m.tm}</div></div></div>`;
+  });
+ }
+ if(!filt.length) html='<div style="text-align:center;padding:40px;color:#555">Babu Live yanzu - Danna Today</div>';
+ document.getElementById('list').innerHTML=html;
+}
+loadReal();
+setInterval(loadReal,60000);
+</script>
+</body>
+</html>
